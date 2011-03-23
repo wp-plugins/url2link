@@ -17,7 +17,7 @@ This plugin will fetch title and summary from URL.
 Then changed to link with summary automatically.
 
 
-= Support =
+= Support: =
 
 * [Plugin Homepage](http://firegoby.theta.ne.jp/wp/url2link)
 * [Support](http://wordpress.org/tags/url2link)
