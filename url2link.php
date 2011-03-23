@@ -4,7 +4,7 @@ Plugin Name: url2link
 Plugin URI: http://firegoby.theta.ne.jp/wp/url2link
 Description: Embed link with title and summary only the URL as input.
 Author: Takayuki Miyauchi (THETA NETWORKS Co,.Ltd)
-Version: 0.2.1
+Version: 0.2.2
 Author URI: http://firegoby.theta.ne.jp/
 */
 
