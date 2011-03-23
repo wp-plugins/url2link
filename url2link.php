@@ -2,9 +2,9 @@
 /*
 Plugin Name: url2link
 Plugin URI: http://firegoby.theta.ne.jp/wp/url2link
-Description: convert url to link.
+Description: Embed link with title and summary only the URL as input.
 Author: Takayuki Miyauchi (THETA NETWORKS Co,.Ltd)
-Version: 0.2.0
+Version: 0.2.1
 Author URI: http://firegoby.theta.ne.jp/
 */
 
@@ -56,7 +56,8 @@ class url2link {
             array(&$this, 'loadCSS')
         );
         add_shortcode('url2link', array(&$this, 'shortcode'));
-        add_action( 'save_post', array(&$this, 'delete_oembed_caches') );
+        add_action('save_post', array(&$this, 'delete_oembed_caches'));
+        add_filter('plugin_row_meta', array(&$this, 'plugin_row_meta'), 10, 2);
     }
 
     public function handler($m, $attr, $url, $rattr)
@@ -151,6 +152,15 @@ EOL;
         }
         echo "<!--url2link plugin-->\n";
         echo '<link rel="stylesheet" type="text/css" media="all" href="'.$style.'">';
+    }
+
+    public function plugin_row_meta($links, $file)
+    {
+        $pname = plugin_basename(__FILE__);
+        if ($pname === $file) {
+            $links[] = '<a href="http://firegoby.theta.ne.jp/pfj/">Pray for Japan</a>';
+        }
+        return $links;
     }
 }
 
