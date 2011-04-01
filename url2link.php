@@ -4,7 +4,7 @@ Plugin Name: url2link
 Plugin URI: http://firegoby.theta.ne.jp/wp/url2link
 Description: Embed link with title and summary only the URL as input.
 Author: Takayuki Miyauchi (THETA NETWORKS Co,.Ltd)
-Version: 0.2.1
+Version: 0.2.4
 Author URI: http://firegoby.theta.ne.jp/
 */
 
@@ -87,12 +87,22 @@ class url2link {
         } else {
             $summary = '';
             if (isset($p['summary']) && $p['summary']) {
+                if (isset($p['charset']) && $p['charset']) {
+                    $obj = new getSiteSummary($url, $p['charset']);
+                } else {
+                    $obj = new getSiteSummary($url);
+                }
+                $site = $obj->fetch();
+                if (!$site) {
+                    return ;
+                }
+                $link = sprintf('<a href="%s">%s</a>', $url, $site['title']);
                 $summary = esc_html($p['summary']);
             } elseif (strpos($url, site_url()) > -1) {
                 $pid = url_to_postid($url);
-                $post = get_post($pid);
-                $link = sprintf('<a href="%s">%s</a>', $url, $post->post_title);
-                $summary = strip_tags($post->post_content);
+                $pp = get_post($pid);
+                $link = sprintf('<a href="%s">%s</a>', $url, $pp->post_title);
+                $summary = strip_tags($pp->post_content);
             } else {
                 if (isset($p['charset']) && $p['charset']) {
                     $obj = new getSiteSummary($url, $p['charset']);
