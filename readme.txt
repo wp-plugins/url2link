@@ -4,7 +4,7 @@ Donate link: http://firegoby.theta.ne.jp/
 Tags: url, link, oembed, visual editor, post
 Requires at least: 3.0
 Tested up to: 3.1
-Stable tag: 0.2.3
+Stable tag: 0.2.4
 
 Insert link to post with only the URL as the input.
 
